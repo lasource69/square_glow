@@ -1,74 +1,70 @@
-* {
-  box-sizing: border-box;
-}
+*{box-sizing: border-box;}
 
 html,
 body {
   margin: 0 auto;
-  height: 100%;
+  height: 50%;
 }
-
 div {
   font-size: 28px;
   /* existing code */
 }
-
 body {
   display: flex;
   align-items: center;
   font-family: monospace;
   justify-content: center;
-  background-color: #1d212b;
+  background-color:darken(#252B37, 4%);
+}
+
+@mixin backlight($x, $y, $spread, $size, $colorA, $colorB, $duration) {
+  &:after {
+    position: absolute;
+    content: "";
+    top: $y;
+    left: $x;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    transform: scale($size);
+    -webkit-filter: blur($spread);
+    -moz-filter: blur($spread);
+    -ms-filter: blur($spread);
+    filter: blur($spread);
+    background: linear-gradient(270deg, $colorA, $colorB);
+    background-size: 200% 200%;
+    animation: animateGlow $duration ease infinite;
+    
+    @keyframes animateGlow {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+  }
 }
 
 div {
-  position: relative;
-  width: 30vw;
-  height: 30vw;
-  line-height: 30vw;
+  position: centre;
+  width:1000vw;
+  height: 10vw;
+  line-height: 10vw;
   text-align: center;
   color: #252B37;
   background-color: #151823;
-  animation: textColor 10s ease infinite;
-}
-div:after {
-  position: absolute;
-  content: "";
-  top: 5vw;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  height: 10%;
-  width: 100%;
-  margin: 0 auto;
-  transform: scale(0.75);
-  -webkit-filter: blur(5vw);
-  -moz-filter: blur(5vw);
-  -ms-filter: blur(5vw);
-  filter: blur(5vw);
-  background: linear-gradient(270deg, #0fffc1, #7e0fff);
-  background-size: 200% 200%;
-  animation: animateGlow 10s ease infinite;
-}
-@keyframes animateGlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-@keyframes textColor {
-  0% {
-    color: #7e0fff;
-  }
-  50% {
-    color: #0fffc1;
-  }
-  100% {
-    color: #7e0fff;
+  animation: textColor 5s ease infinite;
+  @include backlight(0, 5vw, 5vw, 0.75, #0fffc1, #7e0fff, 5s);
+    
+  @keyframes textColor {
+    0% {
+      color: #7e0fff;
+    }
+    50% {
+      color: #0fffc1;
+    }
+    100% {
+      color: #7e0fff;
+    }
   }
 }
