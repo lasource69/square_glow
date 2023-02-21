@@ -46,7 +46,7 @@ body {
 }
 
 div {
-  position: centre;
+  position: relative;
   width:1000vw;
   height: 10vw;
   line-height: 10vw;
@@ -54,7 +54,7 @@ div {
   color: #252B37;
   background-color: #151823;
   animation: textColor 5s ease infinite;
-  @include backlight(0, 5vw, 5vw, 0.75, #0fffc1, #7e0fff, 5s);
+  @include backlight(0, 5vw, 5vw, 0.75, #0fffc1, #7e0fff, 10s);
     
   @keyframes textColor {
     0% {
